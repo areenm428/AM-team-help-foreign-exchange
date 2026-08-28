@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AM Team Help - WhatsApp Contact Manager</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-globe"></i>
+                <h1>AM Team Help</h1>
+                <p>Foreign Exchange - MBA Project</p>
+            </div>
+            <div class="header-info">
+                <span class="project-name">WhatsApp Contact Manager</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <nav class="nav-menu">
+                    <div class="nav-item active" data-tab="contacts">
+                        <i class="fas fa-address-book"></i>
+                        <span>All Contacts</span>
+                    </div>
+                    <div class="nav-item" data-tab="teams">
+                        <i class="fas fa-users"></i>
+                        <span>Teams</span>
+                    </div>
+                    <div class="nav-item" data-tab="add-contact">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>Add Contact</span>
+                    </div>
+                    <hr>
+                    <div class="nav-item" data-tab="export">
+                        <i class="fas fa-download"></i>
+                        <span>Export Contacts</span>
+                    </div>
+                </nav>
+            </aside>
+
+            <!-- Content Area -->
+            <main class="content-area">
+                <!-- Contacts Tab -->
+                <section id="contacts" class="tab-content active">
+                    <div class="section-header">
+                        <h2>Team Contacts</h2>
+                        <div class="search-bar">
+                            <input type="text" id="searchInput" placeholder="Search contacts...">
+                            <i class="fas fa-search"></i>
+                        </div>
+                    </div>
+
+                    <div class="filters">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="Comics">Comics</button>
+                        <button class="filter-btn" data-filter="Case Studies">Case Studies</button>
+                        <button class="filter-btn" data-filter="Research">Research</button>
+                        <button class="filter-btn" data-filter="Presentation">Presentation</button>
+                    </div>
+
+                    <div id="contactsList" class="contacts-grid">
+                        <!-- Contacts will be loaded here -->
+                    </div>
+                </section>
+
+                <!-- Teams Tab -->
+                <section id="teams" class="tab-content">
+                    <div class="section-header">
+                        <h2>Project Teams</h2>
+                        <button class="btn btn-primary" id="addTeamBtn">
+                            <i class="fas fa-plus"></i> Add Team
+                        </button>
+                    </div>
+                    <div id="teamsList" class="teams-grid">
+                        <!-- Teams will be loaded here -->
+                    </div>
+                </section>
+
+                <!-- Add Contact Tab -->
+                <section id="add-contact" class="tab-content">
+                    <div class="section-header">
+                        <h2>Add New Contact</h2>
+                    </div>
+                    <form id="addContactForm" class="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Full Name *</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="whatsappNumber">WhatsApp Number *</label>
+                                <input type="tel" id="whatsappNumber" name="whatsappNumber" placeholder="+91-XXXXXXXXXX" required>
+                                <small>Include country code (e.g., +91 for India)</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="phoneNumber">Phone Number</label>
+                                <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="(Optional)">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="role">Role *</label>
+                                <select id="role" name="role" required>
+                                    <option value="">Select Role</option>
+                                    <option value="Designer">Designer</option>
+                                    <option value="Researcher">Researcher</option>
+                                    <option value="Writer">Writer</option>
+                                    <option value="Lead">Lead</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="team">Team Component *</label>
+                                <select id="team" name="team" required>
+                                    <option value="">Select Team</option>
+                                    <option value="Comics">Comics</option>
+                                    <option value="Case Studies">Case Studies</option>
+                                    <option value="Research">Research</option>
+                                    <option value="Presentation">Presentation</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="notes">Notes</label>
+                            <textarea id="notes" name="notes" rows="3" placeholder="Add any additional notes..."></textarea>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Save Contact
+                            </button>
+                            <button type="reset" class="btn btn-secondary">
+                                <i class="fas fa-redo"></i> Clear
+                            </button>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- Export Tab -->
+                <section id="export" class="tab-content">
+                    <div class="section-header">
+                        <h2>Export Contacts</h2>
+                    </div>
+                    <div class="export-options">
+                        <div class="export-card">
+                            <i class="fas fa-file-csv"></i>
+                            <h3>CSV Format</h3>
+                            <p>Export all contacts as CSV file</p>
+                            <button class="btn btn-primary" id="exportCSV">
+                                <i class="fas fa-download"></i> Download CSV
+                            </button>
+                        </div>
+                        <div class="export-card">
+                            <i class="fas fa-file-pdf"></i>
+                            <h3>PDF Format</h3>
+                            <p>Export all contacts as PDF document</p>
+                            <button class="btn btn-primary" id="exportPDF">
+                                <i class="fas fa-download"></i> Download PDF
+                            </button>
+                        </div>
+                        <div class="export-card">
+                            <i class="fab fa-whatsapp"></i>
+                            <h3>WhatsApp Groups</h3>
+                            <p>Generate WhatsApp group links by team</p>
+                            <button class="btn btn-primary" id="generateGroups">
+                                <i class="fas fa-link"></i> Generate Links
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Contact Card Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalBody">
+                <!-- Contact details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Team Modal -->
+    <div id="teamModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Create New Team</h2>
+            <form id="addTeamForm">
+                <div class="form-group">
+                    <label for="teamName">Team Name *</label>
+                    <input type="text" id="teamName" required>
+                </div>
+                <div class="form-group">
+                    <label for="teamComponent">Component *</label>
+                    <select id="teamComponent" required>
+                        <option value="Comics">Comics</option>
+                        <option value="Case Studies">Case Studies</option>
+                        <option value="Research">Research</option>
+                        <option value="Presentation">Presentation</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="teamDescription">Description</label>
+                    <textarea id="teamDescription" rows="3"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Create Team</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeTeamModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
